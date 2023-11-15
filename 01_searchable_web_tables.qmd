@@ -17,7 +17,6 @@ library(DT)
 # Load in data of prez candidate campaign trips between midterms and end of Jan
 events <- readRDS("events_saved.rds")
 
-
 ```
 
 ## Using DT to make a searchable table
@@ -77,7 +76,7 @@ DT::datatable(events,
 #we do that using a DT "extenstion" called, you guessed it, Buttons
 # https://rstudio.github.io/DT/extensions.html
 
-DT::datatable(events, 
+mytable <- DT::datatable(events, 
               rownames = FALSE, 
               filter = "top", 
               extensions = 'Buttons', 
@@ -85,7 +84,11 @@ DT::datatable(events,
                 dom = 'Bfrtip',
                 buttons = c('copy', 'csv', "excel")
               )) %>%
-  DT::formatStyle('cand_lastname',  color = 'red', fontWeight = 'bold')
+  DT::formatStyle('cand_lastname',  color = 'red', fontWeight = 'bold') %>% 
+  DT::formatStyle('state', backgroundColor = styleEqual(c("TX", "NY"),c('blue','purple'))) %>% 
+  DT::formatStyle("event_type", backgroundColor = styleEqual(c("rally", "tour"),c("red","orange")))
+  
+
 ```
 
 
