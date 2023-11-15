@@ -97,7 +97,7 @@ mytable <- DT::datatable(events,
 
 # first we just need to assign our table to a variable...
 
-mytable <- DT::datatable(events, 
+mytable2 <- DT::datatable(events, 
                          rownames = FALSE, 
                          filter = "top", 
                          extensions = 'Buttons', 
@@ -105,8 +105,11 @@ mytable <- DT::datatable(events,
                            dom = 'Bfrtip',
                            buttons = c('copy', 'csv', "excel")
                          )) %>%
-  DT::formatStyle('cand_lastname',  color = 'red', fontWeight = 'bold') 
+  DT::formatStyle('cand_lastname',  color = 'red', fontWeight = 'bold')
+```
 
+
+```{r}
 # ... then just run this simple bit of code to export to html
 DT::saveWidget(mytable, "mytable.html")
 
